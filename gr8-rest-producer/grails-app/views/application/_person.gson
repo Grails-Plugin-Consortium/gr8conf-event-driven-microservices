@@ -1,0 +1,10 @@
+import gr8.rest.api.Person
+
+
+model {
+    Person person
+}
+
+json {
+    name person.name
+}

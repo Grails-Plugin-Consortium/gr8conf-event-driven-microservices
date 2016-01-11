@@ -1,0 +1,8 @@
+import gr8.rest.producer.Person
+
+model {
+	Iterable<Person> personList
+}
+
+json tmpl.person(personList ?: [])
+
