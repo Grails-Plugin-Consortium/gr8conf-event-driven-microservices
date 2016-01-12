@@ -8,6 +8,7 @@ Setup
 
 Install RabbitMQ
 ---
+Install via instruction at the [rabbitmq website](https://www.rabbitmq.com/install-standalone-mac.html)
 
 Install Kafka
 ---
@@ -26,6 +27,21 @@ Boot Producer
 ----
 Simply `gradle bootRun` from the producer project.   The `application.yml` is currently configured to start the server on port 8080.
 
+In the configuration you can use the following to control data.
+
+``` yaml
+---
+# Enable or disable posting messages to each
+rabbitmq.enabled: true
+kafka.enabled: true
+
+---
+# Kafka configuration
+brokerList: localhost:9092
+sync: async         # use async or sync post to producer
+topic: person
+```
+
 Boot Consumer
 ---
 Simply `gradle bootRun` from the consumer project.  The `application.yml` is currently configured to start the server on port 8282.
@@ -37,3 +53,9 @@ To put a message onto the RabbitMQ and/or the Kafka topic simply use your favori
 ```bash
 curl -X POST -H "Content-type: application/json" --data '{"name": "Christian"}' http://localhost:8080/person
 ```
+
+
+
+Notes
+---
+You may see a `java.lang.RuntimeException: Reloading agent exited via exception, please raise a jira` exception during the first post to kafka when running in `run-app` or `bootRun` if using async.  This can be ignored and appears to not cause any data issues.

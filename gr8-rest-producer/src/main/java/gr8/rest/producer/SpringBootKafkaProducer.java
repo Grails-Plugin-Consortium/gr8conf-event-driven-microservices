@@ -26,6 +26,9 @@ public class SpringBootKafkaProducer {
     @Value("${topic}")
     private String topic;
 
+    @Value("${kafka.enabled}")
+    Boolean kafkaEnabled;
+
     private Producer<String, String> producer;
 
     public SpringBootKafkaProducer() {
@@ -51,6 +54,10 @@ public class SpringBootKafkaProducer {
     }
 
     public void send(String value) throws ExecutionException, InterruptedException {
+        if(!kafkaEnabled){
+            return;
+        }
+
         if (sync.equalsIgnoreCase("sync")) {
             sendSync(value);
         } else {
