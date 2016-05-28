@@ -3,8 +3,27 @@ GR8 Event-Driven Microservices
 
 These projects will demo how to pub/sub to both RabbitMQ and Kafka.
 
-Setup
-====
+Setup Using Docker
+=====
+
+Install Docker
+-----
+Install [Docker Toolbox](https://docs.docker.com/mac/step_one/) and get all that stuff configured.
+
+You will need to make sure to have a default docker machine created via `docker-machine create --driver=virtualbox default`.  In your shell make sure to run `eval \`docker-machine env default\``
+
+Running Application
+----
+Bundled in source is a simply shell script named `build-run.sh` located in the docker directory.  Simply `cd` into the `docker` directory and run `./build-run.sh`
+
+This will compile the apps, create the container and images and then start all the things.
+
+You can then get the IP of the running instance via `docker-machine ip default`.  Note the IP and replace localhost with the docker IP in the #Testing All The Things# section.  Proceed to the #Testing All The Things# to test the setup. 
+
+To see the data in action you may need to tail the logs with a docker logs on the docker_producer and docker_consumer images like the following `docker logs -f db18a7ed796e`.  To get the image names do a `docker ps` command.
+
+Setup Running Directly
+=====
 
 Install RabbitMQ
 ---
@@ -46,6 +65,11 @@ Boot Consumer
 ---
 Simply `gradle bootRun` from the consumer project.  The `application.yml` is currently configured to start the server on port 8282.
 
+
+
+Testing All The Things
+======
+
 Trigger Producer
 ---
 To put a message onto the RabbitMQ and/or the Kafka topic simply use your favorite REST client tool like
@@ -53,8 +77,6 @@ To put a message onto the RabbitMQ and/or the Kafka topic simply use your favori
 ```bash
 curl -X POST -H "Content-type: application/json" --data '{"name": "Christian"}' http://localhost:8080/person
 ```
-
-
 
 Notes
 ---

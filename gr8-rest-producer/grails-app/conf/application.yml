@@ -1,6 +1,7 @@
 ---
 rabbitmq.enabled: true
 kafka.enabled: true
+rabbit.host.name: localhost
 
 ---
 brokerList: localhost:9092

@@ -1,4 +1,4 @@
-import gr8.rest.api.Person
+import gr8.rest.producer.Person
 
 
 model {

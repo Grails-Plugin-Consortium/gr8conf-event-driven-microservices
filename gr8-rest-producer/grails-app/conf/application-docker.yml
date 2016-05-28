@@ -1,0 +1,19 @@
+---
+spring.cloud.zookeeper.connect-string: zk:2181
+zookeeper.server.list: zk:2181
+kafka.server.list: kafka:9092
+kafka.server.sync: async
+kafka.enabled: true
+rabbit.host.name: rabbit
+brokerList: kafka:9092
+
+datadog.environment.name: dev
+
+---
+grails:
+    redis:
+        host: redis
+        post: 6379
+        poolConfig:
+            maxActive: 10
+            maxIdle: 5

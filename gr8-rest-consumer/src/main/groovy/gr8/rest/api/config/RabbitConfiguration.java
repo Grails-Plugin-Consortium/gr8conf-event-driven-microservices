@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,9 +20,12 @@ public class RabbitConfiguration {
 	public static final String PERSON_DELETED = "person.deleted";
 	public static final String EXCHANGE = "exchange";
 
+	@Value("${rabbit.host.name}")
+	String rabbitHostName;
+
 	@Bean
 	public ConnectionFactory connectionFactory() {
-		return new CachingConnectionFactory("localhost");
+		return new CachingConnectionFactory(rabbitHostName);
 	}
 
 	@Bean

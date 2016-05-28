@@ -1,0 +1,43 @@
+consumer:
+  build: consumer
+  ports:
+    - "${IP}8282:8282"
+  links:
+    - redis:redis
+    - kafka:kafka
+    - zookeeper:zk
+    - rabbitmq:rabbit
+
+producer:
+  build: producer
+  ports:
+    - "${IP}8080:8080"
+  links:
+    - redis:redis
+    - kafka:kafka
+    - zookeeper:zk
+    - rabbitmq:rabbit
+
+redis:
+  image: redis:3.0.7-alpine
+
+zookeeper:
+  image: wurstmeister/zookeeper:3.4.6
+  ports:
+    - "2181"
+kafka:
+  image: wurstmeister/kafka:0.9.0.0-1
+  ports:
+    - "9092"
+  links:
+    - zookeeper:zk
+  environment:
+    HOSTNAME_COMMAND: "route -n | awk '/UG[ \t]/{print $$2}'"
+  privileged: true # Needed for SELinux
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+rabbitmq:
+  image: bijukunjummen/rabbitmq-server
+  ports:
+    - "5672:5672"
+    - "15672:15672"

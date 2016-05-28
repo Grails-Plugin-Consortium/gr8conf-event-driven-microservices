@@ -12,6 +12,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.stereotype.Service
@@ -24,6 +25,10 @@ import java.util.concurrent.TimeUnit
 
 @Configuration
 public class KafkaConfig {
+
+    @Value('${spring.cloud.zookeeper.connect-string}')
+    String zookeeperHostPort
+
 
     @Bean(destroyMethod = "shutdown")
     public ConsumerConnector consumerConnector() {
@@ -41,7 +46,7 @@ public class KafkaConfig {
     public ConsumerConfig consumerConfig() {
 
         Properties props = new Properties();
-        props.put("zookeeper.connect", "localhost:2181");
+        props.put("zookeeper.connect", zookeeperHostPort);
         props.put("group.id", "gr8-rest-client");
         props.put("zookeeper.session.timeout.ms", "400");
         props.put("zookeeper.sync.time.ms", "200");

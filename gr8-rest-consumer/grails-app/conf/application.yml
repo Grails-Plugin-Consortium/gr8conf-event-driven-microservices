@@ -2,6 +2,7 @@
 kafka.consumer.group: gr8-rest-client
 kafka.consumer.topic: person
 kafka.consumer.partitions: 4
+rabbit.host.name: localhost
 
 spring.cloud.zookeeper.connect-string: localhost:2181
 
