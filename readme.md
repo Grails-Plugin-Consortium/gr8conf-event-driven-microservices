@@ -10,7 +10,7 @@ Install Docker
 -----
 Install [Docker Toolbox](https://docs.docker.com/mac/step_one/) and get all that stuff configured.
 
-You will need to make sure to have a default docker machine created via `docker-machine create --driver=virtualbox default`.  In your shell make sure to run `eval \`docker-machine env default\``
+You will need to make sure to have a default docker machine created via `docker-machine create --driver=virtualbox default`.  In your shell make sure to run `eval $(docker-machine env default)`
 
 Running Application
 ----
