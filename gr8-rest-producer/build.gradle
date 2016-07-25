@@ -31,6 +31,7 @@ ext {
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
+    maven { url 'https://repo.spring.io/libs-snapshot' }
 }
 
 dependencyManagement {
@@ -51,7 +52,10 @@ dependencies {
     compile "org.grails:grails-core"
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
-    compile "org.springframework.boot:spring-boot-starter-amqp" //AMQP
+    compile "org.springframework.boot:spring-boot-starter-amqp"
+    compile 'org.springframework.cloud:spring-cloud-sleuth-core:1.0.3.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-sleuth-zipkin:1.0.3.RELEASE'
+//    compile 'org.springframework.cloud:spring-cloud-sleuth:1.1.0.BUILD-SNAPSHOT'
     compile "org.grails:grails-plugin-url-mappings"
     compile "org.grails:grails-plugin-rest"
     compile "org.grails:grails-plugin-codecs"
@@ -62,7 +66,7 @@ dependencies {
     compile "org.grails:grails-plugin-async"
     compile "org.grails:grails-web-boot"
     compile "org.grails:grails-logging"
-    compile "org.grails.plugins:cache"
+//    compile "org.grails.plugins:cache"
     compile "org.grails.plugins:hibernate4"
     compile "org.hibernate:hibernate-ehcache"
     compile "org.grails.plugins:views-json"

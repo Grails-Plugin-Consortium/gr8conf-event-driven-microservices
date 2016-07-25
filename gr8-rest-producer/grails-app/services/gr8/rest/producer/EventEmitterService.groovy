@@ -21,6 +21,7 @@ class EventEmitterService {
 
     public void emitEvent(String messageBody) {
         //emit a kafka event to the producer
+        log.info("You are going to emit an event to Kafka!")
         try {
             if (kafkaEnabled) {
                 springBootKafkaProducer.send(messageBody);

@@ -76,10 +76,14 @@ public class SpringBootKafkaProducer {
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, value);
 
         producer.send(record, (RecordMetadata recordMetadata, Exception e) -> {
-            logger.info("Received callback data: " + recordMetadata.toString());
-            if (e != null) {
-                //This will trip on grails development mode due to spring reloader.  Not sure why
-                logger.info("Received exception on callback: " + e.getMessage());
+            if(recordMetadata != null) {
+                logger.info("Received callback data: " + recordMetadata.toString());
+                if (e != null) {
+                    //This will trip on grails development mode due to spring reloader.  Not sure why
+                    logger.info("Received exception on callback: " + e.getMessage());
+                }
+            } else {
+                logger.info("Received null record on callback");
             }
         });
     }

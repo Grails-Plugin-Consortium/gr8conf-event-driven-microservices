@@ -1,14 +1,17 @@
 package gr8.rest.producer
 
-import gr8.rest.api.config.RabbitConfiguration
 import grails.converters.JSON
 import grails.rest.RestfulController
 import grails.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
+import reactor.spring.context.annotation.Consumer
+import reactor.spring.context.annotation.Selector
 
-import static org.springframework.http.HttpStatus.*
+import static org.springframework.http.HttpStatus.CREATED
+import static org.springframework.http.HttpStatus.NOT_FOUND
 
 @Transactional(readOnly = false)
+@Consumer
 class PersonController extends RestfulController {
 
     @Autowired
@@ -46,8 +49,15 @@ class PersonController extends RestfulController {
 
         person.save(flush: true)
 
+        //fire some events
+        //notify "person:saved", (person as JSON).toString()
         eventEmitterService.emitEvent((person as JSON).toString())
 
         respond person, [status: CREATED, view: "show"]
+    }
+
+    @Selector("person:saved")
+    public consumePersonSavedEvent(String json) {
+        log.error "Internal person saved event with data $json"
     }
 }

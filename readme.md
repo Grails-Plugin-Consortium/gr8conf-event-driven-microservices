@@ -78,6 +78,11 @@ To put a message onto the RabbitMQ and/or the Kafka topic simply use your favori
 curl -X POST -H "Content-type: application/json" --data '{"name": "Christian"}' http://localhost:8080/person
 ```
 
+Docker Machine
+```bash
+curl -X POST -H "Content-type: application/json" --data '{"name": "Christian"}' http://192.168.99.100:8080/person
+```
+
 Notes
 ---
 You may see a `java.lang.RuntimeException: Reloading agent exited via exception, please raise a jira` exception during the first post to kafka when running in `run-app` or `bootRun` if using async.  This can be ignored and appears to not cause any data issues.
