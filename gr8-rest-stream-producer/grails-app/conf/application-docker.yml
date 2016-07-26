@@ -19,7 +19,7 @@ spring:
         personKafka:
           type: kafka
           environment:
-            spring.cloud.stream.kafka.binder.zkNodes: za:2181
+            spring.cloud.stream.kafka.binder.zkNodes: zk:2181
             spring.cloud.stream.kafka.binder.brokers: kafka:9092
 
 ---
