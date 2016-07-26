@@ -18,6 +18,16 @@ producer:
     - zookeeper:zk
     - rabbitmq:rabbit
 
+stream:
+  build: stream
+  ports:
+    - "${IP}8484:8484"
+  links:
+    - redis:redis
+    - kafka:kafka
+    - zookeeper:zk
+    - rabbitmq:rabbit
+
 redis:
   image: redis:3.0.7-alpine
 
