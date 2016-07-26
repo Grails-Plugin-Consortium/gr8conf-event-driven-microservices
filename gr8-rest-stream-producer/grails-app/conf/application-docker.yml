@@ -1,0 +1,32 @@
+---
+spring:
+  cloud:
+    stream:
+      defaultBinder: personKafka
+      bindings:
+#        personRabbit.destination: person.save
+#        personRabbit.content-type: application/json
+        personKafka.destination: person
+        personKafka.content-type: application/json
+      binders:
+#        personRabbit:
+#          type: rabbit
+#          environment:
+#            spring.rabbitmq.host: 127.0.0.1
+#            spring.rabbitmq.port: 5672
+#            spring.rabbitmq.username: guest
+#            spring.rabbitmq.password: guest
+        personKafka:
+          type: kafka
+          environment:
+            spring.cloud.stream.kafka.binder.zkNodes: za:2181
+            spring.cloud.stream.kafka.binder.brokers: kafka:9092
+
+---
+grails:
+    redis:
+        host: redis
+        post: 6379
+        poolConfig:
+            maxActive: 10
+            maxIdle: 5

@@ -1,0 +1,7 @@
+import gr8.rest.stream.producer.Person
+
+model {
+	Person person
+}
+
+json tmpl.person(person)

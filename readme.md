@@ -78,10 +78,22 @@ To put a message onto the RabbitMQ and/or the Kafka topic simply use your favori
 curl -X POST -H "Content-type: application/json" --data '{"name": "Christian"}' http://localhost:8080/person
 ```
 
+When running the spring cloud stream 
+
+```bash
+curl -X POST -H "Content-type: application/json" --data '{"name": "Christian"}' http://localhost:8484/person
+```
+
 Docker Machine
 ```bash
 curl -X POST -H "Content-type: application/json" --data '{"name": "Christian"}' http://192.168.99.100:8080/person
 ```
+
+
+Spring Cloud Stream
+===
+I have included a project under `gr8-conf-stream-producer` that wires up using the [spring-cloud-stream](https://cloud.spring.io/spring-cloud-stream/) which 
+ simplifies the approach to publishing and consuming messages.
 
 Notes
 ---
