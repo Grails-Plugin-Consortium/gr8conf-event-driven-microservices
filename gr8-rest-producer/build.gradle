@@ -55,7 +55,6 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-amqp"
     compile 'org.springframework.cloud:spring-cloud-sleuth-core:1.0.3.RELEASE'
     compile 'org.springframework.cloud:spring-cloud-sleuth-zipkin:1.0.3.RELEASE'
-//    compile 'org.springframework.cloud:spring-cloud-sleuth:1.1.0.BUILD-SNAPSHOT'
     compile "org.grails:grails-plugin-url-mappings"
     compile "org.grails:grails-plugin-rest"
     compile "org.grails:grails-plugin-codecs"

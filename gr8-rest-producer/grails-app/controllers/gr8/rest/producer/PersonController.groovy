@@ -50,7 +50,7 @@ class PersonController extends RestfulController {
         person.save(flush: true)
 
         //fire some events
-        //notify "person:saved", (person as JSON).toString()
+//        notify "person:saved", (person as JSON).toString()
         eventEmitterService.emitEvent((person as JSON).toString())
 
         respond person, [status: CREATED, view: "show"]
