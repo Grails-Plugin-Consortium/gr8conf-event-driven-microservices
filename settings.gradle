@@ -1,1 +1,1 @@
-include 'gr8-rest-consumer','gr8-rest-producer'
+include 'gr8-rest-consumer','gr8-rest-producer', 'gr8-rest-stream-producer'

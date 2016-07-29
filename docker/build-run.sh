@@ -18,6 +18,7 @@ SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # Create Dockerfile for consumer and producer
 sed "s|{RELEASE_VERSION}|$RELEASE_VERSION|g;" $SCRIPT_DIR/consumer/Dockerfile.template > $SCRIPT_DIR/consumer/Dockerfile
 sed "s|{RELEASE_VERSION}|$RELEASE_VERSION|g;" $SCRIPT_DIR/producer/Dockerfile.template > $SCRIPT_DIR/producer/Dockerfile
+sed "s|{RELEASE_VERSION}|$RELEASE_VERSION|g;" $SCRIPT_DIR/stream/Dockerfile.template > $SCRIPT_DIR/stream/Dockerfile
 
 cd ..
 
@@ -25,6 +26,8 @@ cd ..
 cp -rf gr8-rest-producer/build/libs/gr8-rest-producer-0.1.jar docker/producer
 ./gradlew :gr8-rest-consumer:clean :gr8-rest-consumer:assemble
 cp -rf gr8-rest-consumer/build/libs/gr8-rest-consumer-0.1.jar docker/consumer
+./gradlew :gr8-rest-stream-producer:clean :gr8-rest-stream-producer:assemble
+cp -rf gr8-rest-stream-producer/build/libs/gr8-rest-stream-producer-0.1.jar docker/stream
 
 cd docker
 
