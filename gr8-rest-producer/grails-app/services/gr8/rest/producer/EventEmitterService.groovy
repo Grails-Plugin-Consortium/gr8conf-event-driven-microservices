@@ -1,11 +1,15 @@
 package gr8.rest.producer
 
 import gr8.rest.api.config.RabbitConfiguration
+import grails.converters.JSON
+import grails.events.Events
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 
-class EventEmitterService {
+class EventEmitterService implements Events {
+
+    static transactional = false
 
     @Value('${kafka.enabled}')
     Boolean kafkaEnabled
